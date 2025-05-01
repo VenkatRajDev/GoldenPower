@@ -3,7 +3,7 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import HomeScreen from './Screens/Home/HomeScreen';
-import ProductScreen from './Screens/Products/ProductScreen';
+import ShopScreen from './Screens/Shop/ShopScreen';
 import ORDERS from './Screens/Orders/ORDERS';
 import PROFILE from './Screens/Profile/PROFILE';
 
@@ -26,7 +26,7 @@ const CustomerTabNav = () => {
         screenOptions={{headerShown: false}}
         tabBar={props => <TabBar {...props} IconNames={IconNames} />}>
         <CustomerTab.Screen name="Home" component={HomeScreen} />
-        <CustomerTab.Screen name="Shop" component={ProductScreen} />
+        <CustomerTab.Screen name="Shop" component={ShopScreen} />
         <CustomerTab.Screen name="Orders" component={ORDERS} />
         <CustomerTab.Screen name="Profile" component={PROFILE} />
       </CustomerTab.Navigator>
