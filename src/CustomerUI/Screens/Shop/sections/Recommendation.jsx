@@ -1,22 +1,26 @@
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {FlatList, Pressable, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Fontfamily, Fontsize} from '../../../../../Theme/FontConfig';
 import {SCREEN_HIGHT, SCREEN_WIDTH} from '../../../../../Theme/Dimension';
 import Card from '../../../components/Card';
+import { useNavigation } from '@react-navigation/native';
 
 const Recommendation = ({THEME, title, products}) => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={[styles.title, {color: THEME.TEXTPRIMARY}]}>
           {title}
         </Text>
-        <Text style={[styles.seeAll]}>See All</Text>
+        <Pressable>
+        <Text style={[styles.seeAll,{color: THEME.TEXTPRIMARY}]}>See All</Text>
+        </Pressable>
       </View>
       <FlatList
         data={products}
         renderItem={({item}) => (
-          <Card price={item.price} image={item.image} wholeData={item} />
+          <Card cardInfo={item} navigation={navigation} />
         )}
         horizontal={true}
         showsHorizontalScrollIndicator={false}

@@ -7,29 +7,27 @@ import BrandCard from '../../../components/BrandCard';
 import {brandsData} from '../tempData';
 import {Fontfamily, Fontsize} from '../../../../../Theme/FontConfig';
 import {GroupIntoColumns} from '../../../Utilities/GroupIntoColumns';
+import {useNavigation} from '@react-navigation/native';
 
 const _scrollHeight = SCREEN_HIGHT * 0.25;
 const _arrowContainer = 40;
 
-const RenderItems = ({item}) => {
+const RenderItems = ({item, navigation}) => {
   return (
     <View>
       {item.map((elements, index) => {
         return (
-          <BrandCard
-            key={index}
-            image={elements.image}
-            wholeData={brandsData}
-          />
+          <BrandCard key={index} brandInfo={elements} navigation={navigation} />
         );
       })}
     </View>
   );
 };
 
-const FotterComponent = ({THEME}) => {
+const FotterComponent = ({THEME,navigation}) => {
   return (
     <TouchableOpacity
+     onPress={() => navigation.navigate("allBrands")}
       style={[styles.fotterContainer, {backgroundColor: THEME.CARDBACKGROUND}]}>
       <Text style={[styles.fotterText, {color: THEME.TEXTPRIMARY}]}>
         See All
@@ -50,13 +48,16 @@ const FotterComponent = ({THEME}) => {
 };
 
 const BrandsRecommend = () => {
+  const navigation = useNavigation();
   const groupedData = GroupIntoColumns(brandsData, 2);
   const {THEME} = useTheme();
   return (
     <View style={[styles.container]}>
       <FlatList
         data={groupedData}
-        renderItem={({item, index}) => <RenderItems item={item} />}
+        renderItem={({item, index}) => (
+          <RenderItems item={item} navigation={navigation} />
+        )}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={{
@@ -64,7 +65,7 @@ const BrandsRecommend = () => {
         }}
         keyExtractor={(_, index) => index.toString()}
         style={{marginTop: SCREEN_HIGHT * 0.001}}
-        ListFooterComponent={<FotterComponent THEME={THEME} />}
+        ListFooterComponent={<FotterComponent THEME={THEME} navigation={navigation}/>}
       />
     </View>
   );
