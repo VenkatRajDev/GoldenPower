@@ -13,7 +13,6 @@ import {
   BORDER_RADIUS,
 } from '../../../Theme/Dimension';
 import {useTheme} from '../../../ThemeProvider';
-import {useNavigation} from '@react-navigation/native';
 import {Fontfamily, Fontsize} from '../../../Theme/FontConfig';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -29,18 +28,18 @@ const commonTextStyle = {
 
 const _roundHeartViewDeminsion = 35;
 
-const Card = ({image, title, price, wholeData}) => {
+const Card = ({cardInfo, navigation}) => {
   const {THEME} = useTheme();
-  const navigation = useNavigation();
-  const beforeOfferPrice = useRef(parseInt(price) + 500);
+  const {id, name, image, price, description} = {...cardInfo};
+  const beforeOfferPrice = useRef(parseInt(price) + 500); // temporary value
 
-  return wholeData?.empty === true ? (
+  return id?.empty === true ? (
     <View style={[styles.container, {elevation: 0}]} />
   ) : (
     <Pressable
       style={[styles.container, {backgroundColor: THEME.CARDBACKGROUND}]}
       onPress={() =>
-        navigation.push('productDetails', {productDetails: wholeData})
+        navigation.push('productDetails', {productDetails: cardInfo})
       }>
       <Image
         source={{uri: image}}
@@ -50,7 +49,10 @@ const Card = ({image, title, price, wholeData}) => {
       <View style={styles.contentContainer}>
         <Text
           numberOfLines={2}
-          style={[commonTextStyle, {color: THEME.TEXTPRIMARY,fontFamily: Fontfamily.LIGHT}]}>
+          style={[
+            commonTextStyle,
+            {color: THEME.TEXTPRIMARY, fontFamily: Fontfamily.LIGHT},
+          ]}>
           Luminous Inverter & Battery Combo
         </Text>
 
@@ -78,9 +80,9 @@ const Card = ({image, title, price, wholeData}) => {
         style={{
           width: _containerWidth,
           paddingHorizontal: _containerWidth * 0.04,
-          flexDirection:'row',
-          justifyContent:"space-between",
-          alignItems:'center'
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
         }}>
         <TouchableOpacity style={[styles.wishListButton]}>
           <Ionicons
@@ -90,9 +92,17 @@ const Card = ({image, title, price, wholeData}) => {
           />
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.orderButton,{backgroundColor: THEME.PRIMARY}]}>
-          <Text style={[styles.orderButtonText,{color: THEME.BUTTONTEXTCOLOR}]}>Order</Text>
-          <Ionicons name='arrow-forward' size={Fontsize.BUTTONTEXT} color={THEME.BUTTONTEXTCOLOR}/>
+        <TouchableOpacity
+          style={[styles.orderButton, {backgroundColor: THEME.PRIMARY}]}>
+          <Text
+            style={[styles.orderButtonText, {color: THEME.BUTTONTEXTCOLOR}]}>
+            Order
+          </Text>
+          <Ionicons
+            name="arrow-forward"
+            size={Fontsize.BUTTONTEXT}
+            color={THEME.BUTTONTEXTCOLOR}
+          />
         </TouchableOpacity>
       </View>
     </Pressable>
@@ -129,13 +139,13 @@ const styles = StyleSheet.create({
     width: _containerWidth * 0.65,
     height: _containerHeight * 0.15,
     borderRadius: BORDER_RADIUS - 5,
-    flexDirection:'row',
-    justifyContent:'space-between',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     paddingHorizontal: SCREEN_WIDTH * 0.02,
-    alignItems:'center'
+    alignItems: 'center',
   },
-  orderButtonText:{
+  orderButtonText: {
     fontSize: Fontsize.BUTTONTEXT,
-    fontFamily: Fontfamily.MEDIUM
-  }
+    fontFamily: Fontfamily.MEDIUM,
+  },
 });
