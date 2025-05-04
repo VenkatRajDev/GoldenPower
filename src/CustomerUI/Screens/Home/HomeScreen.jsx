@@ -21,7 +21,6 @@ const HomeScreen = () => {
         <Search THEME={THEME} />
         <SuggestionCard THEME={THEME} />
         <ProductRecommend THEME={THEME} />
-        {/* <BrandRecommend THEME={THEME}/> */}
       </ScrollView>
 
       <StatusBar

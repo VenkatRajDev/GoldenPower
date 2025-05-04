@@ -5,10 +5,12 @@ import {Fontfamily, Fontsize} from '../../../../../Theme/FontConfig';
 import {HandleGridData} from '../../../Utilities/HandleGridData';
 import DATA from '../temdata';
 import Card from '../../../components/Card';
+import { useNavigation } from '@react-navigation/native';
 
 const numOfColumns = 2;
 
 const ProductRecommend = ({THEME}) => {
+  const navigation = useNavigation();
   const formatedData = useMemo(() => HandleGridData(numOfColumns, DATA), []);
 
   return (
@@ -18,28 +20,23 @@ const ProductRecommend = ({THEME}) => {
           paddingHorizontal: SCREEN_WIDTH * 0.05,
           flexDirection: 'row',
           alignItems: 'center',
-          justifyContent:"space-between"
+          justifyContent: 'space-between',
         }}>
-        <Text style={[styles.title,{color: THEME.TEXTPRIMARY}]}>Best selling product</Text>
-        <Text style={[styles.seeAll,{color: THEME.TEXTPRIMARY}]}>See All</Text>
+        <Text style={[styles.title, {color: THEME.TEXTPRIMARY}]}>
+          Best selling product
+        </Text>
+        <Text style={[styles.seeAll, {color: THEME.TEXTPRIMARY}]}>See All</Text>
       </View>
 
       <FlatList
         scrollEnabled={false}
         data={formatedData}
-        renderItem={({item}) => (
-          <Card
-            title={item.title}
-            image={item.image}
-            price={item.price}
-            wholeData={item}
-          />
-        )}
+        renderItem={({item}) => <Card cardInfo={item} navigation={navigation}/>}
         numColumns={numOfColumns}
         keyExtractor={item => item.id.toString()}
         style={{marginTop: SCREEN_HIGHT * 0.01}}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{alignItems:'center'}}
+        contentContainerStyle={{alignItems: 'center'}}
       />
     </View>
   );
@@ -56,8 +53,8 @@ const styles = StyleSheet.create({
     fontSize: Fontsize.SUB,
     fontFamily: Fontfamily.SEMIBOLD,
   },
-  seeAll:{
+  seeAll: {
     fontSize: Fontsize.BUTTONTEXT,
-    fontFamily: Fontfamily.REGULAR
-  }
+    fontFamily: Fontfamily.REGULAR,
+  },
 });
