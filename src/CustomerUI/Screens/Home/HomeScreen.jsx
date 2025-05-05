@@ -8,7 +8,6 @@ import Header from './sections/Header';
 import Search from './sections/Search';
 import SuggestionCard from './sections/SuggestionCard';
 import ProductRecommend from './sections/ProductRecommend';
-import BrandRecommend from './sections/BrandRecommend';
 
 const HomeScreen = () => {
   const {THEME, isDarkMode} = useTheme();
