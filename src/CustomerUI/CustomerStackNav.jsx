@@ -11,7 +11,7 @@ import ProductsByEachBrandScreen from './Screens/ProductsByEachBrand/ProductsByE
 
 const CustomerStackNav = () => {
   return (
-    <CustomerStack.Navigator screenOptions={{headerShown: false}}>
+    <CustomerStack.Navigator screenOptions={{headerShown: false,animation:'none'}}>
       <CustomerStack.Screen name='stackHome' component={CustomerTabNav}/>
       <CustomerStack.Screen name='productDetails' component={ProductDetailsScreen}/>
       <CustomerStack.Screen name='allBrands' component={AllBrandsScreen} />
