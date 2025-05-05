@@ -22,7 +22,7 @@ const BrandCard = ({brandInfo, navigation}) => {
   ) : (
     <Pressable
       onPress={() => {
-        navigation.push('productsByEachBrand', {BrandDetail: brandInfo});
+        navigation.push('productsByEachBrand', {BrandDetails: brandInfo});
       }}
       style={[
         styles.container,
