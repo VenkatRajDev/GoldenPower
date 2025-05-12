@@ -1,6 +1,6 @@
 export const Light = {
   PRIMARY: '#2E8B57',
-  ACCENT: '#FFA500',
+  ACCENT: '#DC143C',
   SECOUNDARY: '#6A5ACD',
   BACKGROUND: '#E5E4E2',
   CARDBACKGROUND: '#FFFFFF',
@@ -17,19 +17,19 @@ export const Light = {
 };
 
 export const Dark = {
-  PRIMARY: '#2E8B57',        // A nice green for primary elements
-  ACCENT: '#FFA500',         // Accent color (orange)
-  SECOUNDARY: '#6A5ACD',      // Secondary blue
-  BACKGROUND: '#0D0D0D',     // Premium black background (almost pure black, but not #000)
-  CARDBACKGROUND: '#1A1A1A', // Slightly lighter than background to make it visible
-  TEXTPRIMARY: '#F5F5F5',    // Bright white for good contrast
-  TEXTSECONDARY: '#B0B0B0',  // Subtle secondary text
+  PRIMARY: '#2E8B57',
+  ACCENT: '#DC143C',
+  SECOUNDARY: '#6A5ACD',
+  BACKGROUND: '#0D0D0D',
+  CARDBACKGROUND: '#1A1A1A',
+  TEXTPRIMARY: '#F5F5F5',
+  TEXTSECONDARY: '#B0B0B0',
   BUTTONTEXTCOLOR: '#FFFFFF',
   PLACEHOLDER: '#757575',
   SUCESS: '#00E676',
   ERROR: '#EF5350',
   WARNING: '#FFCA28',
-  TABBAR: '#121212',         // Darker than card background for visibility
+  TABBAR: '#121212',
   TABBAR_ICON_ACTIVE: '#2E8B57', 
   TABBAR_ICON_INACTIVE: '#B0B0B0'
   
